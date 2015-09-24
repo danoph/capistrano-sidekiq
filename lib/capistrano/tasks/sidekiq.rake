@@ -113,9 +113,9 @@ namespace :sidekiq do
     end
 
     if fetch(:start_sidekiq_in_background, fetch(:sidekiq_run_in_background))
-      background :sidekiq, args.compact.join(' ')
+      background :bundle, 'exec sidekiq', args.compact.join(' ')
     else
-      execute :sidekiq, args.compact.join(' ')
+      execute :bundle, 'exec sidekiq', args.compact.join(' ')
     end
   end
 
